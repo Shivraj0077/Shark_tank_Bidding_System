@@ -1,5 +1,6 @@
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/dist/server/api-utils";
 
 export function SignOut() {
   return (

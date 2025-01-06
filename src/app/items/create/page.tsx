@@ -19,8 +19,10 @@ export default function CreatePage() {
           const form = e.currentTarget as HTMLFormElement;
           const formData = new FormData(form);
           const file = formData.get("file") as File;
+          console.log(file);
 
           const uploadUrl = await createUploadUrlAction(file.name, file.type);
+          console.log(uploadUrl);
 
           await fetch(uploadUrl, {
             method: "PUT",

@@ -24,6 +24,17 @@ export async function Header() {
               Auction an Item
             </Link>
           </div>
+          <div>
+            <Link 
+                
+              
+              href="/items/my-startups"
+              className="hover:underline flex items-center gap-1"
+>
+              my startups
+            </Link>
+          </div>
+
         </div>
         <div className="flex items-center gap-4">
           <div>{session?.user?.name}</div>

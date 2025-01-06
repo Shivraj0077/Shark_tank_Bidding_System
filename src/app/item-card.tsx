@@ -6,7 +6,7 @@ export function ItemCard({ item }: { item: Item }) {
   return (
     <div key={item.id} className="border p-8 rounded-xl space-y-2">
       <Image
-        src={getImageUrl(item.fileKey)}
+        src={getImageUrl(item.filekey)}
         alt={item.name}
         width={200}
         height={200}

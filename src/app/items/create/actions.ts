@@ -35,7 +35,7 @@ export async function createItemAction({
   await database.insert(items).values({
     name,
     startingPrice,
-    fileKey: fileName,
+    filekey: fileName,
     userId: user.id,
   });
 
