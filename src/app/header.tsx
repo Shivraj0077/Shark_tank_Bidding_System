@@ -13,7 +13,7 @@ export async function Header() {
         <div className="flex items-center gap-12">
           <Link href="/" className="hover:underline flex items-center gap-1">
             <Image src="/logo.png" width="50" height="50" alt="Logo" />
-            BidBuddy.com
+            sharktank
           </Link>
 
           <div>
