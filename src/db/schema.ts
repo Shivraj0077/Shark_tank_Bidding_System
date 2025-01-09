@@ -9,6 +9,7 @@ import {
   import postgres from "postgres"
   import { drizzle } from "drizzle-orm/postgres-js"
   import type { AdapterAccountType } from "next-auth/adapters"
+
    
 export const bids = pgTable("bb_bids",{
     id:serial('id').primaryKey(),
@@ -21,6 +22,10 @@ export const items = pgTable("bb_items",{
       .references(() => users.id, { onDelete: "cascade" }),
     startingPrice: integer("startingPrice").notNull().default(0),
     filekey:text('fileKey').notNull(), 
+    equity:integer("equity").notNull().default(0),
+     filepdf:text("filepdf").notNull(),
+    description:text("description").notNull(),
+    companyval:text("company").notNull(),
 })
 
 const connectionString = "postgres://postgres:rujal@localhost:5432/drizzle"

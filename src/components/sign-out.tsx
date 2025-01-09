@@ -1,6 +1,7 @@
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
+import { RedirectType } from "next/navigation";
 
 export function SignOut() {
   return (
@@ -8,6 +9,7 @@ export function SignOut() {
       action={async () => {
         "use server";
         await signOut();
+        redirect("/")
       }}
     >
       <Button type="submit">Sign Out</Button>

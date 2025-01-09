@@ -15,10 +15,21 @@ export async function createItemAction({
   fileName,
   name,
   startingPrice,
+  equity,
+companyval,
+description,  
+filepdf
+  
+
 }: {
   fileName: string;
   name: string;
   startingPrice: number;
+  equity:number;
+  companyval:string;
+  description:string;
+  filepdf:string;
+
 }) {
   const session = await auth();
 
@@ -37,6 +48,12 @@ export async function createItemAction({
     startingPrice,
     filekey: fileName,
     userId: user.id,
+    equity,
+    description,
+    companyval,
+    filepdf
+    
+
   });
 
   redirect("/");
