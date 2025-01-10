@@ -67,14 +67,14 @@ export function ItemCard({ item }: { item:  Item }) {
             <TrendingUp className="w-5 h-5 text-primary" />
             <div>
               <p className="text-sm text-muted-foreground">Investment</p>
-              <p className="font-semibold">${(item.startingPrice / 100).toLocaleString()}</p>
+              <p className="font-semibold"> ₹{(item.startingPrice / 100).toLocaleString()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Percent className="w-5 h-5 text-primary" />
             <div>
               <p className="text-sm text-muted-foreground">Equity</p>
-              <p className="font-semibold">{item.equity / 100}%</p>
+              <p className="font-semibold">{item.equity}%</p>
             </div>
           </div>
         </div>

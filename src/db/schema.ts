@@ -9,6 +9,7 @@ import {
   import postgres from "postgres"
   import { drizzle } from "drizzle-orm/postgres-js"
   import type { AdapterAccountType } from "next-auth/adapters"
+import { relations } from "drizzle-orm";
 
    
 export const bids = pgTable("bb_bids",{
@@ -33,6 +34,7 @@ export const items = pgTable("bb_items",{
     description:text("description").notNull(),
     companyval:text("company").notNull(),
     bidInterval:integer("bidInterval").notNull().default(100),
+    currentBid:integer("currentBid").notNull().default(0)
 })
 
 const connectionString = "postgres://postgres:rujal@localhost:5432/drizzle"
@@ -123,4 +125,10 @@ export const authenticators = pgTable(
   ]
   
 )
+export const userRelations = relations(bids,({one})=>({
+  user:one(users,{
+    fields:[bids.userId],
+    references:[users.id],
+  })
+}))
 export type Item = typeof items.$inferSelect
