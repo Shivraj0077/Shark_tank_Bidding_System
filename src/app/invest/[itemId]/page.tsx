@@ -64,19 +64,23 @@ export default async function ItemPage({
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Current Bid</p>
-                  <p className="text-3xl font-bold">{item.currentBid}</p>
+                  <p className="text-3xl font-bold"> ₹{item.currentBid}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Min Increment</p>
-                  <p className="text-3xl font-bold">{item.bidInterval}</p>
+                  <p className="text-3xl font-bold"> ₹{item.bidInterval}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Valuation</p>
-                  <p className="text-3xl font-bold">${item.companyval}</p>
+                  <p className="text-3xl font-bold"> ₹{item.companyval}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Equity</p>
-                  <p className="text-3xl font-bold">{item.equity}</p>
+                  <p className="text-3xl font-bold">{item.equity}%</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Equity</p>
+                  <p className="text-3xl font-bold"> ₹{item.startingPrice}</p>
                 </div>
               </div>
 
