@@ -13,6 +13,12 @@ import {
    
 export const bids = pgTable("bb_bids",{
     id:serial('id').primaryKey(),
+    amount:integer('amount').notNull(),
+    itemId:serial('itemId').notNull()
+    .references(()=> items.id,{onDelete:"cascade"}),
+    userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
 })
 export const items = pgTable("bb_items",{
     name:text('name').notNull(),
@@ -26,6 +32,7 @@ export const items = pgTable("bb_items",{
      filepdf:text("filepdf").notNull(),
     description:text("description").notNull(),
     companyval:text("company").notNull(),
+    bidInterval:integer("bidInterval").notNull().default(100),
 })
 
 const connectionString = "postgres://postgres:rujal@localhost:5432/drizzle"

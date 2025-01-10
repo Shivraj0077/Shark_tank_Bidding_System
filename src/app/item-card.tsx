@@ -85,7 +85,7 @@ export function ItemCard({ item }: { item:  Item }) {
          
       
           <Button className="w-full">
-            <Link href={`/items/${item.id}`}>Invest</Link>
+            <Link href={`/items/${item.id}`}>know more</Link>
           </Button>
 
       </CardFooter>

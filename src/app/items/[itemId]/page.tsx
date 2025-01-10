@@ -6,6 +6,7 @@ import { database } from "@/db/database";
 import { items } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { getImageUrl } from '@/util/files';
+import Link from 'next/link';
 
 
 
@@ -46,8 +47,20 @@ console.log(getImageUrl(item.filepdf))
             {item.name}
           </h1>
           <p className="text-2xl text-gray-200 max-w-2xl mb-8">
-            Revolutionizing the future of artificial intelligence with groundbreaking machine learning solutions
+            Start your investment journey today
           </p>
+          <Button
+  variant="outline"
+  size="lg"
+  className=" text-white border-red-950 hover:bg-white bg-red-950 hover:text-black transition-all p-8 text-lg flex items-center justify-center "
+>
+  <Link href={`/invest/${item.id}`} className="flex items-center space-x-2">
+  <span>Invest</span>
+    <ArrowRight className="h-5 w-5" />
+    
+  </Link>
+</Button>
+
          
         </div>
       </div>
@@ -101,14 +114,14 @@ console.log(getImageUrl(item.filepdf))
       href={getImageUrl(item.filepdf)}// Replace with your full URL
       target="_blank" // Optional: Opens the link in a new tab
       rel="noopener noreferrer" // For security when using target="_blank"
-      className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 p-2 rounded-lg block text-center"
+      className="w-full bg-black text-white   dark:bg-white dark:text-black dark:hover:bg-gray-200 p-2 rounded-lg block text-center"
     >
-      <Button size="lg">
+      <Button size="lg" className='bg-black'>
         <FileDown className="mr-2 h-5 w-5" />
         View PDF
       </Button>
     </a>
-          </div>c
+          </div>
         </div>
       </div>
     </div>
