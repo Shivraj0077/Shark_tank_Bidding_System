@@ -10,17 +10,21 @@ import { getBidsForItem } from '@/data-access/bids';
 import { getItem } from '@/data-access/items';
 import { create } from 'node:domain';
 import { createBidAction } from './action';
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { isBidOver } from '@/util/bids';
 
 export default async function ItemPage({
-    params: { itemId },
+    params,
   }: {
     params: { itemId: string };
   }) {
-
+    const { itemId } = await params;
     const session = await auth();
     const item = await getItem(parseInt(itemId));
    
-
+    function formatTimestamp(timestamp: Date) {
+      return formatDistance(timestamp, new Date(), { addSuffix: true });
+    }
    
  
     if(!item){
@@ -83,37 +87,56 @@ export default async function ItemPage({
                   <p className="text-3xl font-bold"> ₹{item.startingPrice}</p>
                 </div>
               </div>
+             
+
 
               <div className="flex flex-col md:flex-row gap-4 items-end">
                 <div className="flex-1">
                  
                 </div>
+                { isBidOver(item)?(
+                  <div className="bg-red-100 text-red-700 font-semibold p-4 rounded-md shadow-md text-center">
+                  Sorry, funding round is over
+                </div>
+                
+                ):(
                 <form action={createBidAction.bind(null,item.id)}>
+                  
                 <Button
                   className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 h-12 px-8"
                 >
                   invest <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                </form>
+                </form>)}
               </div>
             </Card>
 
             {/* Bidding History */}
-        
+            
             <Card className="p-8 bg-white dark:bg-zinc-900 border-0">
-              <h2 className="text-2xl font-bold mb-6">Bidding History</h2>
+            <div className="flex items-center space-x-2">
+  <div className="w-10 h-10 bg-red-800 rounded-full animate-pulse"></div>
+  <h2 className="text-2xl font-bold">Live investment</h2>
+</div>
+
               <div className="space-y-4">
                 {allBids.map((bid) => (
                   <div key={bid.id} className="flex items-center justify-between py-4 border-b dark:border-zinc-800">
                     <div>
                       <p className="font-semibold">{bid.user.name}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{bid.user.email}</p>
                     </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{formatTimestamp(bid.timestamp)}</p>
+                     
                     <div className="flex items-center text-green-600 dark:text-green-400">
                       <ChevronUp className="w-4 h-4 mr-1" />
-                      {bid.amount}
+                      ₹{bid.amount}
+
                     </div>
+
                   </div>
+              
+
                 ))}
               </div>
             </Card>
@@ -131,21 +154,17 @@ export default async function ItemPage({
               <div className="mb-8">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Time Remaining</p>
                 <p className="text-3xl font-bold flex items-center">
-                  {/* <Clock className="w-6 h-6 mr-2" />
-                  {getTimeRemaining(startup.endDate)} */}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Active Bidders</p>
-                <p className="text-3xl font-bold flex items-center">
-                  <Users className="w-6 h-6 mr-2" />
-                  {/* {startup.totalBids} */}
+                {format(item.endDate, "eeee M/dd/yy")}
                 </p>
               </div>
             </Card>
           </div>
         </div>
       </div>
+      <div className="fixed bottom-4 right-4 bg-red-600 dark:bg-white text-white dark:text-black text-sm p-3 rounded-lg shadow-md">
+  <p className='text-sm'>Investments are subject to market risks, read all scheme-related documents carefully.</p>
+  <p>निवेश बाजार जोखिमों के अधीन हैं, योजना से संबंधित सभी दस्तावेजों को ध्यान से पढ़ें।</p>
+</div>
     </div>
   );
 }

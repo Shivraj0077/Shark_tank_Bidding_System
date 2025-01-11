@@ -7,6 +7,7 @@ import { items } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { getImageUrl } from '@/util/files';
 import Link from 'next/link';
+import { format } from 'date-fns';
 
 
 
@@ -84,7 +85,7 @@ console.log(getImageUrl(item.filepdf))
           <Card className="p-8 bg-white dark:bg-zinc-900 border-0">
             <Clock className="w-12 h-12 mb-4 text-black dark:text-white" />
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Investment Interval</p>
-            <h3 className="text-3xl font-bold">6 Months</h3>
+            <h3 className="text-3xl font-bold">{ format(item.endDate,"eeee  M/dd/yy")}</h3>
           </Card>
 
           <Card className="p-8 bg-white dark:bg-zinc-900 border-0">

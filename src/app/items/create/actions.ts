@@ -18,7 +18,9 @@ export async function createItemAction({
   equity,
 companyval,
 description,  
-filepdf
+filepdf,
+bidInterval,
+endDate,
   
 
 }: {
@@ -29,6 +31,9 @@ filepdf
   companyval:string;
   description:string;
   filepdf:string;
+  bidInterval:number;
+  endDate: Date
+  
 
 }) {
   const session = await auth();
@@ -51,7 +56,9 @@ filepdf
     equity,
     description,
     companyval,
-    filepdf
+    filepdf,
+    bidInterval,
+    endDate,
     
 
   });

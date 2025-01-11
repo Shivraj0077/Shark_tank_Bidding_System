@@ -23,7 +23,8 @@ const latestBidvalue=item.currentBid+item.bidInterval
 await database.insert(bids).values({
     amount: latestBidvalue,
     itemId,
-    userId:session.user.id
+    userId:session.user.id,
+    timestamp:new Date()
 })
 await database.update(items).set({
     currentBid:latestBidvalue,

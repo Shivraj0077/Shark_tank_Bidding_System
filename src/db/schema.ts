@@ -20,6 +20,7 @@ export const bids = pgTable("bb_bids",{
     userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+    timestamp: timestamp("timestamp", { mode: "date" }).notNull(),
 })
 export const items = pgTable("bb_items",{
     name:text('name').notNull(),
@@ -34,7 +35,8 @@ export const items = pgTable("bb_items",{
     description:text("description").notNull(),
     companyval:text("company").notNull(),
     bidInterval:integer("bidInterval").notNull().default(100),
-    currentBid:integer("currentBid").notNull().default(0)
+    currentBid:integer("currentBid").notNull().default(0),
+    endDate: timestamp("endDate", { mode: "date" }).notNull()
 })
 
 const connectionString = "postgres://postgres:rujal@localhost:5432/drizzle"

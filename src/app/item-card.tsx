@@ -21,6 +21,7 @@ import { getImageUrl } from "@/util/files";
 import Image from "next/image";
 import Link from "next/link";
 import { Item } from "@/db/schema";
+import { format } from "date-fns";
 
 interface ItemCardProps {
   item: {
@@ -67,7 +68,7 @@ export function ItemCard({ item }: { item:  Item }) {
             <TrendingUp className="w-5 h-5 text-primary" />
             <div>
               <p className="text-sm text-muted-foreground">Investment</p>
-              <p className="font-semibold"> ₹{(item.startingPrice / 100).toLocaleString()}</p>
+              <p className="font-semibold"> ₹{(item.startingPrice).toLocaleString()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -76,7 +77,15 @@ export function ItemCard({ item }: { item:  Item }) {
               <p className="text-sm text-muted-foreground">Equity</p>
               <p className="font-semibold">{item.equity}%</p>
             </div>
+               
+           
+           
+           
           </div>
+          <p className="font-semibold ml-3 whitespace-nowrap">
+  Ends on: {format(item.endDate, "eeee dd/M/yy")}
+</p>
+
         </div>
       </CardContent>
 

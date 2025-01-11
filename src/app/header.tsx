@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { SignIn } from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
+import { Building2, PlusCircle, Briefcase } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,39 +9,57 @@ export async function Header() {
   const session = await auth();
 
   return (
-    <div className="bg-gray-200 py-2">
-      <div className="container flex justify-between items-center">
-        <div className="flex items-center gap-12">
-          <Link href="/" className="hover:underline flex items-center gap-1">
-            <Image src="/logo.png" width="50" height="50" alt="Logo" />
-            sharktank
+    <header className="bg-white border-b border-gray-100 py-4 shadow-sm">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="flex items-center gap-8">
+          <Link 
+            href="/dashboard" 
+            className="flex items-center gap-2 group"
+          >
+            <Image 
+              src="/shark-tank-logo-DFC6B1B261-seeklogo.com.png" 
+              width="50" 
+              height="50" 
+              alt="Logo"
+              className="rounded-lg"
+            />
+            <span className="font-bold text-xl text-gray-800 group-hover:text-gray-600">
+              sharktank
+            </span>
           </Link>
 
-          <div>
+          <nav className="hidden md:flex items-center gap-6">
             <Link
               href="/items/create"
-              className="hover:underline flex items-center gap-1"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-black hover:text-gray-900 hover:bg-gray-50"
             >
-              Auction an Item
+              <PlusCircle className="w-4 h-4" />
+              <span>Post a startup</span>
             </Link>
-          </div>
-          <div>
-            <Link 
-                
-              
+            
+            <Link
               href="/items/my-startups"
-              className="hover:underline flex items-center gap-1"
->
-              my startups
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-black hover:text-gray-900 hover:bg-gray-50"
+            >
+              <Building2 className="w-4 h-4" />
+              <span>My Startups</span>
             </Link>
-          </div>
-
+          </nav>
         </div>
-        <div className="flex items-center gap-4">
-          <div>{session?.user?.name}</div>
-          <div>{session ? <SignOut /> : <SignIn />}</div>
+
+        <div className="flex items-center gap-6">
+          {session?.user?.name && (
+            <div className="hidden md:flex items-center gap-2 text-gray-600">
+              <Briefcase className="w-4 h-4" />
+              <span>{session.user.name}</span>
+            </div>
+          )}
+          
+          <div>
+            {session ? <SignOut /> : <SignIn />}
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
