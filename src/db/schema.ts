@@ -39,7 +39,7 @@ export const items = pgTable("bb_items",{
     endDate: timestamp("endDate", { mode: "date" }).notNull()
 })
 
-const connectionString = "postgres://postgres:rujal@localhost:5432/drizzle"
+const connectionString = process.env.DATABASE_URL!
 const pool = postgres(connectionString, { max: 1 })
  
 export const db = drizzle(pool)
