@@ -63,5 +63,5 @@ endDate,
 
   });
 
-  redirect("/");
+  redirect("/dashboard");
 }
