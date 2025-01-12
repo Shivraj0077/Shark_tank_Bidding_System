@@ -18,7 +18,7 @@ export default async function ItemPage({
   }: {
     params: { itemId: string };
   }) {
-    const { itemId } = await params;
+    const { itemId } =  params;
     const session = await auth();
     const item = await getItem(parseInt(itemId));
    
