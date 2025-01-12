@@ -13,10 +13,9 @@ import { format } from 'date-fns';
 export default async function ItemPage({
   params,
 }: {
-  params: { itemId: string };
+  params: Promise<{ itemId: string }>; // Modify to be a Promise that resolves to { itemId: string }
 }) {
-  // Await the params object before using its properties
-  const { itemId } =  params;
+  const { itemId } = await params;
   const item = await database.query.items.findFirst({
     where: eq(items.id, parseInt(itemId)),
   });

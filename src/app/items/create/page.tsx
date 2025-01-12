@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Building2, Upload, Calendar, Info } from "lucide-react";
 
 export default function CreatePage() {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date|undefined>(new Date());
   
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">

@@ -12,14 +12,14 @@ import { create } from 'node:domain';
 import { createBidAction } from './action';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 import { isBidOver } from '@/util/bids';
-
 export default async function ItemPage({
-    params,
-  }: {
-    params: { itemId: string };
-  }) {
-    const { itemId } =  params;
-    const session = await auth();
+  params,
+}: {
+  params: Promise<{ itemId: string }>; // Modify to be a Promise that resolves to { itemId: string }
+}) {
+  const { itemId } = await params;  // Await the promise to resolve
+  const session = await auth();
+
     const item = await getItem(parseInt(itemId));
    
     function formatTimestamp(timestamp: Date) {

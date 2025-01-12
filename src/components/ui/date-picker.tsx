@@ -1,26 +1,22 @@
-"use client"
+import * as React from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import * as React from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
-export function DatePickerDemo({
-    date,setDate,}:
- {
-    date,
-    setDate,
-  setDate:React.Dispatch<React.SetStateAction<Date | undefined>>;
-  }){
+interface DatePickerDemoProps {
+  date: Date | undefined;
+  setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+}
 
+export function DatePickerDemo({ date, setDate }: DatePickerDemoProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -44,5 +40,5 @@ export function DatePickerDemo({
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }
