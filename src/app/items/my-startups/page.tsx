@@ -26,7 +26,7 @@ export default async function my_startup() {
 
   return (
     <main className="container mx-auto py-12 space-y-8">
-      <h1 className="text-4xl font-bold">Items For Sale</h1>
+      <h1 className="text-4xl font-bold">My startups</h1>
       {allItems.length === 0 ?(
           
           <><p className="text-2xl font-semibold">You dont have startups,create one </p><Link

@@ -1,4 +1,3 @@
-
 import {
   Card,
   CardContent,
@@ -30,16 +29,13 @@ interface ItemCardProps {
     filekey: string;
     startingPrice: number;
     equity: number;
-   
   };
 }
 
-export function ItemCard({ item }: { item:  Item }) {
-
-
+export function ItemCard({ item }: { item: Item }) {
   return (
     <Card className="w-full max-w-md overflow-hidden transition-all hover:shadow-lg">
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-40 sm:h-48 overflow-hidden">
         <Image
           src={getImageUrl(item.filekey)}
           alt={item.name}
@@ -47,56 +43,47 @@ export function ItemCard({ item }: { item:  Item }) {
           className="object-cover transition-transform hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <Badge className="absolute top-4 right-4 bg-primary/90 hover:bg-primary">
+        <Badge className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-primary/90 hover:bg-primary">
           Featured
         </Badge>
       </div>
 
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-2xl font-bold">
-          <Building2 className="w-6 h-6" />
-          {item.name}
+      <CardHeader className="space-y-1 sm:space-y-2 p-4 sm:p-6">
+        <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl font-bold">
+          <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+          <span className="truncate">{item.name}</span>
         </CardTitle>
-        <CardDescription className="text-muted-foreground">
+        <CardDescription className="text-sm sm:text-base text-muted-foreground">
           Start your investment journey
         </CardDescription>
       </CardHeader>
 
-      <CardContent>
-        <div className="grid grid-cols-2 gap-4">
+      <CardContent className="p-4 sm:p-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-primary" />
+            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
             <div>
-              <p className="text-sm text-muted-foreground">Investment</p>
-              <p className="font-semibold"> ₹{(item.startingPrice).toLocaleString()}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Investment</p>
+              <p className="text-sm sm:text-base font-semibold">₹{(item.startingPrice).toLocaleString()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Percent className="w-5 h-5 text-primary" />
+            <Percent className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
             <div>
-              <p className="text-sm text-muted-foreground">Equity</p>
-              <p className="font-semibold">{item.equity}%</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Equity</p>
+              <p className="text-sm sm:text-base font-semibold">{item.equity}%</p>
             </div>
-               
-           
-           
-           
           </div>
-          <p className="font-semibold ml-3 whitespace-nowrap">
-  Ends on: {format(item.endDate, "eeee dd/M/yy")}
-</p>
-
         </div>
+        <p className="text-sm sm:text-base font-semibold mt-3 whitespace-nowrap">
+          Ends on: {format(item.endDate, "eeee dd/M/yy")}
+        </p>
       </CardContent>
 
-      <CardFooter>
-        
-         
-      
-          <Button className="w-full">
-            <Link href={`/items/${item.id}`}>know more</Link>
-          </Button>
-
+      <CardFooter className="p-4 sm:p-6">
+        <Button className="w-full text-sm sm:text-base">
+          <Link href={`/items/${item.id}`}>Know More</Link>
+        </Button>
       </CardFooter>
     </Card>
   );
