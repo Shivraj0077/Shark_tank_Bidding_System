@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "install": "npm install --force",
-    "build": "next build",
+    "build": "npm install --force && next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "drizzle-kit push --config=drizzle.config.ts",
