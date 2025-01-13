@@ -12,6 +12,7 @@ import { create } from 'node:domain';
 import { createBidAction } from './action';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 import { isBidOver } from '@/util/bids';
+import { SignIn } from '@/components/sign-in';
 export default async function ItemPage({
   params,
 }: {
@@ -19,6 +20,15 @@ export default async function ItemPage({
 }) {
   const { itemId } = await params;  // Await the promise to resolve
   const session = await auth();
+      if(!session||!session.user) {
+          return <div className="min-h-screen flex items-center justify-center gap-3">
+            <p className="text-2xl font-semibold ">
+              You need to sign in to view this page
+            </p>
+              
+                <SignIn />
+          </div>
+      }
 
     const item = await getItem(parseInt(itemId));
    
