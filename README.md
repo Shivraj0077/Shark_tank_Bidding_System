@@ -1,1 +1,0 @@
-# Shark_tank_Bidding_System
