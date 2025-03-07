@@ -45,7 +45,7 @@ export function MobileNav() {
             onClick={() => setIsOpen(false)}
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Post a startup</span>
+            <span>Post a Startup</span>
           </Link>
           
           <Link
