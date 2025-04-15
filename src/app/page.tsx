@@ -126,9 +126,6 @@ import Link from "next/link";
             Join thousands of innovative founders and visionary investors
             already changing the game.
           </p>
-          <p className="text-2xl">
-            Made by Rujal Ladhe
-          </p>
         </div>
       </div>
     </div>
